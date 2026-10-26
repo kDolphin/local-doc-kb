@@ -1,0 +1,3 @@
+# Build tier (FTS + body/desc vectors). System: brew install poppler
+-r requirements-query.txt
+xlrd>=2.0.1

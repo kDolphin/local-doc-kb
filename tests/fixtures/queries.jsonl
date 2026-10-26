@@ -1,0 +1,5 @@
+{"query": "coffee water temperature", "expected": ["coffee_brewing.md"]}
+{"query": "chain lubricate", "expected": ["bicycle_maintenance.txt"]}
+{"query": "番茄 日照", "expected": ["zh_garden.md"]}
+{"query": "solar panel voltage", "expected": ["solar_panel.txt"]}
+{"query": "kayak buoyancy", "expected": ["kayak_safety.pdf"]}

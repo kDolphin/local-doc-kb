@@ -1,0 +1,48 @@
+# Indexes and runtime state (never commit real KB data)
+index/**
+!index/
+!index/.gitkeep
+raw/
+state/
+logs/
+inventory/
+*.sqlite3
+*.sqlite3-*
+
+# Python / venv
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Secrets and local config
+.env
+.env.*
+config.json
+!config.example.json
+
+# Hugging Face / model caches
+.cache/
+huggingface/
+*.safetensors
+*.bin
+*.pt
+*.onnx
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+tests/.out/
+
+# Private context for local Grok Build — never publish
+GROK_BUILD_CONTEXT.md
+
+# Built Vision helper (source stays; binary is local)
+tools/macos-vision-ocr/visionocr

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- launchd template: copy to ~/Library/LaunchAgents/, replace REPO_DIR, then
+     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.local-doc-kb.incremental.plist
+     Only install after the user explicitly agrees to a schedule. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.local-doc-kb.incremental</string>
+  <key>ProgramArguments</key><array>
+    <string>/bin/bash</string><string>-lc</string>
+    <string>cd REPO_DIR &amp;&amp; caffeinate -i ./scripts/incremental_build.sh &gt;&gt; logs/incremental.log 2&gt;&amp;1</string>
+  </array>
+  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>30</integer></dict>
+  <key>LowPriorityIO</key><true/>
+  <key>Nice</key><integer>10</integer>
+</dict></plist>

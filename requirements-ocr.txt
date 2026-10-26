@@ -1,0 +1,2 @@
+# Optional OCR tier: no extra Python deps. System: Apple Vision CLI (primary)
+# or `brew install tesseract tesseract-lang` (fallback) + poppler.

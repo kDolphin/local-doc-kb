@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "roots": [
+    "/path/to/your/docs"
+  ],
+  "roots_note": "Absolute or project-relative paths to document trees to index. Local folders and synced cloud folders (e.g. Dropbox/OneDrive mounts) both work.",
+  "denylist_path_prefixes": [
+    "/.git",
+    "/node_modules",
+    "/.venv",
+    "/private",
+    "/1Password"
+  ],
+  "allow_extensions": [
+    ".md",
+    ".txt",
+    ".pdf",
+    ".docx",
+    ".doc",
+    ".pptx",
+    ".xlsx",
+    ".xls",
+    ".csv",
+    ".rtf",
+    ".html",
+    ".htm",
+    ".json",
+    ".log"
+  ],
+  "fetch_max_bytes": 5242880,
+  "index": {
+    "fts": "index/fts.sqlite3",
+    "vectors": "index/vectors.sqlite3",
+    "desc": "index/desc.sqlite3",
+    "desc_vectors": "index/desc_vectors.sqlite3",
+    "media_vectors_eg2": "index/media_vectors_eg2.sqlite3",
+    "ocr": "index/ocr.sqlite3",
+    "vectors_eg2": "index/vectors_eg2.sqlite3",
+    "vectors_bge_small": "index/vectors_bge_small.sqlite3",
+    "desc_vectors_eg2": "index/desc_vectors_eg2.sqlite3",
+    "desc_vectors_bge_small": "index/desc_vectors_bge_small.sqlite3"
+  },
+  "embeddings": {
+    "body_model": "BAAI/bge-base-zh-v1.5",
+    "bge_base_model": "BAAI/bge-base-zh-v1.5",
+    "bge_small_model": "BAAI/bge-small-zh-v1.5",
+    "eg2_model": "google/embeddinggemma-2",
+    "desc_model": "qwen2.5:7b-instruct",
+    "dim": 768,
+    "note": "Example for a Chinese corpus only. The deploying agent must replace body_model, bge_base_model, and bge_small_model after asking whether the files are Chinese, English, or mixed. See docs/models.md."
+  },
+  "features": {
+    "vectors": true,
+    "desc": false,
+    "media": false,
+    "ocr": false,
+    "note": "fts is always on. Minimal profile: vectors only (or none). Full: all true."
+  },
+  "build": {
+    "raw_dir": "raw/",
+    "exclude_path_globs": [
+      "**/tools/**/log/**"
+    ],
+    "desc_types": [
+      "xlsx",
+      "pptx",
+      "doc",
+      "xls",
+      "docx",
+      "pdf"
+    ],
+    "desc_model": "qwen2.5:7b-instruct",
+    "desc_lang": "doc",
+    "ocr_backend": "vision_cli_or_tesseract",
+    "vision_cli": "tools/macos-vision-ocr/visionocr",
+    "pdf_char_thresh": 50,
+    "pdf_page_cap": 30,
+    "pdf_dpi": 150,
+    "ocr_skip_relpath_substr": [],
+    "media_image_exts": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".tif",
+      ".tiff",
+      ".heic",
+      ".webp"
+    ]
+  },
+  "hosts": {
+    "build_note": "Build host holds canonical indexes (FTS + vectors + desc + media + OCR).",
+    "query_note": "Grok default: set build_host and query_index_dir to the user's Grok cloud computer and search that copy. Other agents: leave these empty and query on the build machine.",
+    "build_host": "",
+    "build_index_dir": "",
+    "query_index_dir": "index/"
+  },
+  "allow_remote": false,
+  "allow_remote_note": "Keep false. true + --i-understand-remote is required for saas or non-localhost providers; document content leaves the machine.",
+  "providers": {
+    "llm": {
+      "type": "ollama",
+      "base_url": "http://127.0.0.1:11434",
+      "model": "qwen2.5:7b-instruct",
+      "note": "Example only: Ollama + Qwen. Replace type and model with the local instruct model the user already runs (LM Studio, Ollama, Gemma, Qwen, or Llama). For saas set api_key_env (env var NAME, never the key)."
+    },
+    "embedding": {
+      "type": "sentence_transformers",
+      "model": "BAAI/bge-base-zh-v1.5",
+      "device": "auto",
+      "note": "Example for Chinese text. Ask the user, then set zh, en, or bge-m3 from docs/models.md. Changing model requires rebuilding vectors."
+    }
+  }
+}

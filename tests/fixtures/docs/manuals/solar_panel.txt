@@ -1,0 +1,3 @@
+Portable solar panel quick manual
+Rated power 100 W, open-circuit voltage 21.6 V. Connect to the charge controller
+before connecting the battery. Clean the panel surface monthly with a soft cloth.

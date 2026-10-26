@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "roots": ["tests/fixtures/docs"],
+  "denylist_path_prefixes": ["/private", "/.git"],
+  "allow_extensions": [".md", ".txt", ".pdf"],
+  "allow_remote": false,
+  "features": {"vectors": false, "desc": false, "media": false, "ocr": false},
+  "index": {
+    "fts": "tests/.out/index/fts.sqlite3",
+    "vectors": "tests/.out/index/vectors.sqlite3",
+    "desc": "tests/.out/index/desc.sqlite3",
+    "desc_vectors": "tests/.out/index/desc_vectors.sqlite3",
+    "ocr": "tests/.out/index/ocr.sqlite3",
+    "media_vectors_eg2": "tests/.out/index/media_vectors_eg2.sqlite3"
+  }
+}

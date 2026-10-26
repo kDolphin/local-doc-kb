@@ -1,0 +1,4 @@
+# Optional media tier (image vectors + media query channel)
+-r requirements-build.txt
+pillow
+torchvision

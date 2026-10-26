@@ -1,0 +1,4 @@
+# Minimal query tier: FTS-only ask needs only the Python stdlib (sqlite3 w/ FTS5).
+# Vector query with the default in-process provider additionally needs:
+sentence-transformers>=3.0.0
+torch
